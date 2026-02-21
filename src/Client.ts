@@ -316,8 +316,12 @@ export class Client extends AsyncEventEmitter<Events> {
     clearTimeout(this.#reconnectTimeout);
     this.events.disconnect();
     this.#setReady(false);
+    
+    // Construct WebSocket URL from baseURL if ws is not provided in configuration
+    const wsUrl = this.configuration?.ws ?? `${this.options.baseURL.replace(/\/api$/, "")}/events`;
+    
     this.events.connect(
-      this.configuration?.ws ?? "wss://stoat.chat/events",
+      wsUrl,
       typeof this.#session === "string" ? this.#session : this.#session!.token,
     );
   }
