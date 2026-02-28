@@ -7,6 +7,13 @@ import { U32_MAX, UserPermission } from "../permissions/definitions.js";
 import type { Channel } from "./Channel.js";
 import type { File } from "./File.js";
 import { UserProfile } from "./UserProfile.js";
+export interface Trophy {
+  id: string;
+  title: string;
+  description?: string;
+  icon?: string;
+  date?: string;
+}
 
 /**
  * User Class
@@ -83,6 +90,13 @@ export class User {
    */
   get badges(): number {
     return this.#collection.getUnderlyingObject(this.id).badges;
+  }
+
+  /**
+   * Trophies (Hall of Fame)
+   */
+  get trophies(): Trophy[] | undefined {
+    return (this.#collection.getUnderlyingObject(this.id) as any).trophies;
   }
 
   /**
