@@ -34,6 +34,7 @@ export class User {
     privileged: boolean;
     flags: Nullable<number>;
     bot: Nullable<BotInformation>;
+    trophies: Nullable<any[]>;
 
     /**
      * Get timestamp when this user was created.
@@ -48,7 +49,7 @@ export class User {
         this._id = data._id;
         this.username = data.username;
         this.discriminator = data.discriminator;
-        this.display_name = data.display_name;
+        this.display_name = toNullable(data.display_name);
 
         this.avatar = toNullable(data.avatar);
         this.badges = toNullable(data.badges);
@@ -58,6 +59,7 @@ export class User {
         this.privileged = data.privileged ?? false;
         this.flags = toNullable(data.flags);
         this.bot = toNullable(data.bot);
+        this.trophies = toNullable((data as any).trophies);
 
         makeAutoObservable(this, {
             _id: false,
@@ -111,6 +113,7 @@ export class User {
         apply("privileged");
         apply("flags");
         apply("bot");
+        apply("trophies");
     }
 
     /**
@@ -257,7 +260,7 @@ export default class Users extends Collection<string, User> {
                 username: "Revolt",
                 discriminator: "0000",
                 display_name: "Revolt", // typing issue
-            }),
+            } as any),
         );
     }
 

@@ -1,5 +1,5 @@
 import { backOff } from "@insertish/exponential-backoff";
-import { ObservableSet, runInAction } from "mobx";
+import { ObservableSet, runInAction, action } from "mobx";
 import WebSocket from "@insertish/isomorphic-ws";
 import type { MessageEvent } from "ws";
 import { Role } from "revolt-api";
@@ -154,11 +154,13 @@ export class WebSocketClient {
                                 }
                             });
 
-                            this.client.user = this.client.users.get(
-                                packet.users.find(
-                                    (x) => x.relationship === "User",
-                                )!._id,
-                            )!;
+                            runInAction(() => {
+                                this.client.user = this.client.users.get(
+                                    packet.users.find(
+                                        (x) => x.relationship === "User",
+                                    )!._id,
+                                )!;
+                            });
 
                             this.client.emit("ready");
                             this.ready = true;

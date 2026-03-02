@@ -1,3 +1,4 @@
+// @ts-ignore
 import Long from "long";
 import { Channel, Server, Member } from "..";
 import {
