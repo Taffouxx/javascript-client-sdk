@@ -8,5 +8,6 @@ export { BotFlags } from "./hydration/bot.js";
 export { ServerFlags } from "./hydration/server.js";
 export { UserBadges, UserFlags } from "./hydration/user.js";
 export * from "./lib/regex.js";
+export * from "./util/index.js";
 export * from './permissions/definitions.js';
 //# sourceMappingURL=index.d.ts.map
