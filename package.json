@@ -3,8 +3,11 @@
   "version": "7.3.7",
   "type": "module",
   "exports": {
-    ".": "./lib/index.js"
+    ".": "./lib/index.js",
+    "./esm": "./esm/index.js"
   },
+  "main": "lib/index.js",
+  "module": "lib/index.js",
   "types": "lib/index.d.ts",
   "repository": "https://github.com/stoatchat/javascript-client-sdk",
   "author": "insert <insrt.uk>",
