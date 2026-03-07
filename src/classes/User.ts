@@ -128,6 +128,10 @@ export class User {
   /**
    * Bot information
    */
+  get trophies(): Array<{ id: string; title: string; description?: string; icon?: string; date?: string }> | undefined {
+    return (this.#collection.getUnderlyingObject(this.id) as any).trophies;
+  }
+
   get bot(): { owner: string } | undefined {
     return this.#collection.getUnderlyingObject(this.id).bot;
   }
@@ -326,3 +330,4 @@ export class User {
     );
   }
 }
+

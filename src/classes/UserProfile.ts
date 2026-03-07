@@ -10,6 +10,13 @@ import { File } from "./File.js";
 export class UserProfile {
   readonly content?: string;
   readonly banner?: File;
+  readonly trophies?: Array<{
+    id: string;
+    title: string;
+    description?: string;
+    icon?: string;
+    date?: string;
+  }>;
 
   /**
    * Construct Public Bot
@@ -21,6 +28,7 @@ export class UserProfile {
     this.banner = data.background
       ? new File(client, data.background)
       : undefined;
+    this.trophies = (data as any).trophies;
   }
 
   /**

@@ -27,6 +27,7 @@ export type HydratedUser = {
   avatar?: File;
   status?: UserStatus;
   bot?: BotInformation;
+  trophies?: Array<{ id: string; title: string; description?: string; icon?: string; date?: string }>;
 };
 
 export const userHydration: Hydrate<APIUser, HydratedUser> = {
@@ -51,6 +52,7 @@ export const userHydration: Hydrate<APIUser, HydratedUser> = {
     avatar: (user, ctx) => new File(ctx as Client, user.avatar!),
     status: (user) => user.status!,
     bot: (user) => user.bot!,
+    trophies: (user) => (user as any).trophies,
   },
   initialHydration: () => ({
     relationship: "None",
@@ -72,6 +74,11 @@ export enum UserBadges {
   EarlyAdopter = 256,
   ReservedRelevantJokeBadge1 = 512,
   ReservedRelevantJokeBadge2 = 1024,
+  BattlePass = 2048,
+  Designer = 4096,
+  Partner1 = 8192,
+  Partner2 = 16384,
+  Partner3 = 32768,
 }
 
 /**
@@ -82,3 +89,5 @@ export enum UserFlags {
   Deleted = 2,
   Banned = 4,
 }
+
+

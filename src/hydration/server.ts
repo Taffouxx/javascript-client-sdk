@@ -78,4 +78,5 @@ export const serverHydration: Hydrate<APIServer, HydratedServer> = {
 export enum ServerFlags {
   Official = 1,
   Verified = 2,
+  Partner = 4,
 }
